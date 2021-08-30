@@ -50,6 +50,7 @@ A bookDAO interface is implemented by bookDAOInmemImpl to return some books crea
 A book model class object is used in these classes. (Book detail fields for the model- ID, Name and Author are assumed)
 The bookListService class checks if the list is empty or not, and returns the specific information to the controller. If the booklist is null, it throws a bookListNotFoundException.
 The bookListController displays message to the console "The library is empty" if service class returns an empty library. Otherwise it prints line by line on the console the book details.
+Method namings are used based on the concept of the class it belongs, e.g DAO will "get" from datasource, Service will "provide", and controller will "display"
 The Test classes are arranged in the same manner. The dependencies are mocked using mockito.
 All functionalities are tested with 90% coverage.
 
