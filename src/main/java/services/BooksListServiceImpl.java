@@ -7,8 +7,7 @@ import exceptions.bookListNotFoundException;
 import models.Book;
 
 public class BooksListServiceImpl implements BookListService{
-	// Dependency inversion used so that service can work with any DAO
-	// implementation based on the persistence media used
+
 	private final BookDAO bookDAO;
 
 	public BooksListServiceImpl(BookDAO bookDAO) {

@@ -7,8 +7,6 @@ import models.Book;
 import services.BookListService;
 
 public class BookListController {
-	// Dependency inversion used so that controller can work with any service
-	// implementation based on the type of business rules to be used
 	private final BookListService bookListService;
 
 	public BookListController(BookListService bookListService) {
