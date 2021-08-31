@@ -106,9 +106,13 @@ And , the book is removed from the library
 Note:
 a. Only 1 copy of a book can be borrowed by a User at any point of time
 ```
-Design Considerations-
+- Principles-
 For this story, we need to add number of copies for each book. Instead of modifying the earlier Book model, we can extend it with a new Model class extending the Book class, to add copies of that book, while giving a new constructor to create books with number of copies. (Open for extension, closed for modification)
 With this, the repository of BookDAO changed to have a map of bookcopies now.
-As child class object can be assigned to parent object, we have no problem in using the remaining code.
+
+- Refactoring-
 Removed all business logic from DAO to Service Layer
 Made some readability improvements
+
+The class diagram for this story is-
+![Test Image 1](Story3.png)
