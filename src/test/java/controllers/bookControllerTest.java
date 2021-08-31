@@ -25,7 +25,7 @@ import services.BookService;
 public class bookControllerTest {
 	@Mock
 	BookService bookListService;
-	
+
 	static BookController bookListController;
 	List<Book> books;
 	private PrintStream sysOut;
@@ -63,33 +63,36 @@ public class bookControllerTest {
 		assertEquals(outContent.toString().startsWith("The books presently in the Library are:"), true,
 				"it returns full books list");
 	}
-	
+
 	@DisplayName("On call to borrow a book")
 	@Test
 	public void testBorrowBook() throws bookListNotFoundException {
 		testBorrowLimitExceeded();
-		
+
 		testBookBorrowSuccess();
 		testNoBooksToBorrow();
 	}
+
 	private void testBorrowLimitExceeded() throws bookListNotFoundException {
-		User user= new User(1, new LinkedList<Book>());
-		when(bookListService.borrowBook((long)1, user)).thenReturn(BorrowStatus.BORROW_LIMIT_EXCEEDED);
-		bookListController.borrowBook((long)1, user);
-		assertEquals(true, outContent.toString().contains("BORROW_LIMIT_EXCEEDED"));
+		User user = new User(1, new LinkedList<Book>());
+		when(bookListService.borrowBook((long) 1, user)).thenReturn(BorrowStatus.BORROW_LIMIT_EXCEEDED);
+		bookListController.borrowBook((long) 1, user);
+		assertEquals(true, outContent.toString().contains("BORROW_LIMIT_EXCEEDED"),
+				"it should print BORROW_LIMIT_EXCEEDED");
 	}
+
 	private void testBookBorrowSuccess() {
-		User user= new User(2, new LinkedList<Book>());
-		when(bookListService.borrowBook((long)1, user)).thenReturn(BorrowStatus.BOOK_BORROWED);
-		bookListController.borrowBook((long)1, user);
-		assertEquals(true, outContent.toString().contains("BOOK_BORROWED"));
+		User user = new User(2, new LinkedList<Book>());
+		when(bookListService.borrowBook((long) 1, user)).thenReturn(BorrowStatus.BOOK_BORROWED);
+		bookListController.borrowBook((long) 1, user);
+		assertEquals(true, outContent.toString().contains("BOOK_BORROWED"), "it should print BOOK_BORROWED");
 	}
 
 	private void testNoBooksToBorrow() {
-		User user= new User(3, new LinkedList<Book>());
-		when(bookListService.borrowBook((long)1, user)).thenReturn(BorrowStatus.NO_BOOKS_PRESENT);
-		bookListController.borrowBook((long)1, user);
-		assertEquals(true, outContent.toString().contains("NO_BOOKS_PRESENT"));
+		User user = new User(3, new LinkedList<Book>());
+		when(bookListService.borrowBook((long) 1, user)).thenReturn(BorrowStatus.NO_BOOKS_PRESENT);
+		bookListController.borrowBook((long) 1, user);
+		assertEquals(true, outContent.toString().contains("NO_BOOKS_PRESENT"), "it should print NO_BOOKS_PRESENT");
 	}
 
 	@AfterEach
@@ -97,5 +100,4 @@ public class bookControllerTest {
 		System.setOut(sysOut);
 	}
 
-	
 }

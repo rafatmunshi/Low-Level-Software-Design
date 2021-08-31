@@ -8,11 +8,12 @@ import models.User;
 import services.BooksServiceImpl;
 
 public class LibraryApplication {
-	static final int EXIT=20;
+	static final int EXIT = 20;
 	static final BookController forThisSpecificImpl = new BookController(new BooksServiceImpl(new BookDAOInMemImpl()));
 	static final User currentUser = new User(1, new LinkedList<Book>());
+
 	public static void main(String[] args) {
-		
+
 		System.out.println("Welcome to the Library Management System");
 		while (true) {
 			giveOptionsToUser();
@@ -40,7 +41,7 @@ public class LibraryApplication {
 
 	private static void borrowBook() {
 		System.out.println("Which book do you want to borrow? Mention its ID");
-		long bookId=takeChoiceFromUser();
+		long bookId = takeChoiceFromUser();
 		forThisSpecificImpl.borrowBook(bookId, currentUser);
 	}
 

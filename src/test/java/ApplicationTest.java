@@ -23,13 +23,14 @@ public class ApplicationTest {
 	BookController bookController;
 	private PrintStream sysOut;
 	private final ByteArrayOutputStream outContent = new ByteArrayOutputStream();
+
 	@BeforeEach
 	public void init() {
 		libraryApplication = new LibraryApplication();
 		sysOut = System.out;
 		System.setOut(new PrintStream(outContent));
 	}
-	
+
 	@DisplayName("On call to show options to user")
 	@Test
 	public void testLibraryBooksNull() throws bookListNotFoundException {
@@ -37,7 +38,6 @@ public class ApplicationTest {
 		assertEquals(true, outContent.toString().contains("Choose an option-"), "choices are shown");
 	}
 
-	
 	@AfterEach
 	public void revertStreams() {
 		System.setOut(sysOut);

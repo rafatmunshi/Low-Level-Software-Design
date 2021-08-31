@@ -15,6 +15,7 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import dao.BookDAO;
 import exceptions.bookListNotFoundException;
 import models.Book;
+import models.BookCopies;
 import models.BorrowStatus;
 import models.User;
 
@@ -28,7 +29,8 @@ public class BooksListServiceTest {
 
 	static BooksServiceImpl booksListServiceImpl;
 	List<Book> books;
-	static final User user= new User(1, new LinkedList<Book>());
+	static final User user = new User(1, new LinkedList<Book>());
+
 	@BeforeEach
 	public void init() {
 		booksListServiceImpl = new BooksServiceImpl(bookDao);
@@ -39,43 +41,42 @@ public class BooksListServiceTest {
 	public void testLibraryBooksNull() throws bookListNotFoundException {
 		assertNotNull(bookDao);
 		when(bookDao.getAllBooks()).thenReturn(null);
-		assertThrows(bookListNotFoundException.class, ()->booksListServiceImpl.provideAllBooks(), "it throws not found exception");
+		assertThrows(bookListNotFoundException.class, () -> booksListServiceImpl.provideAllBooks(),
+				"it should throw not found exception");
 	}
 
 	@DisplayName("On call to list library books")
 	@Test
 	public void testLibraryBooksEmpty() throws bookListNotFoundException {
 		when(bookDao.getAllBooks()).thenReturn(new LinkedList<Book>());
-		assertEquals(null, booksListServiceImpl.provideAllBooks(), "it returns null");
+		assertEquals(null, booksListServiceImpl.provideAllBooks(), "it should return null");
 	}
 
 	@DisplayName("On call to list library books")
 	@Test
 	public void testLibraryBooksFull() throws bookListNotFoundException {
 		when(bookDao.getAllBooks()).thenReturn(utils.BookTestUtil.getAllBooksUtil());
-		assertEquals(false, booksListServiceImpl.provideAllBooks().isEmpty(), "it returns full books list");
+		assertEquals(false, booksListServiceImpl.provideAllBooks().isEmpty(), "it should return full books list");
 	}
-	
+
 	@DisplayName("On request to Borrow a book")
 	@Test
 	public void testBorrowBook() {
 		testNoBooksToBorrow();
 		testBorrowLimitExceeded();
+		testInvalidBook();
+		testBorrowNoCopies();
+		testRepeatedBorrow();
+		testBorrowFromMultipleCopies();
+		testBorrowFromSingleCopies();
 		testBookBorrowSuccess();
 	}
 
 	private void testBorrowLimitExceeded() {
-		List<Book> borrowedBooksList= utils.BookTestUtil.getBorrowedBooksTillLimitUtil();
+		List<Book> borrowedBooksList = utils.BookTestUtil.getBorrowedBooksTillLimitUtil();
 		when(bookDao.getAllBooks()).thenReturn(utils.BookTestUtil.getAllBooksUtil());
 		BorrowStatus borrowStatus = booksListServiceImpl.borrowBook(1, new User(1, borrowedBooksList));
 		assertEquals(BorrowStatus.BORROW_LIMIT_EXCEEDED, borrowStatus);
-	}
-
-	private void testBookBorrowSuccess() {
-		when(bookDao.getAllBooks()).thenReturn(utils.BookTestUtil.getAllBooksUtil());
-		when(bookDao.borrowBook((long)1, user)).thenReturn(BorrowStatus.BOOK_BORROWED);
-		BorrowStatus borrowStatus = booksListServiceImpl.borrowBook((long)1, user);
-		assertEquals(BorrowStatus.BOOK_BORROWED, borrowStatus);
 	}
 
 	private void testNoBooksToBorrow() {
@@ -84,5 +85,48 @@ public class BooksListServiceTest {
 		assertEquals(BorrowStatus.NO_BOOKS_PRESENT, borrowStatus);
 	}
 
-	
+	public void testBookBorrowSuccess() {
+		User user = new User(1, new LinkedList<Book>());
+		when(bookDao.getCopiesOfBook(1)).thenReturn(1);
+		when(bookDao.doesBookExist((long) 1)).thenReturn(true);
+		when(bookDao.getBook(1)).thenReturn(new BookCopies(1, "Name1", "Author1", 1));
+		assertEquals(BorrowStatus.SUCCESS, booksListServiceImpl.borrowBook((long) 1, user), "it should return success");
+		assertEquals(1, user.getBorrowedBooks().get(0).getID(), "it should add to the user's borrowed books list");
+	}
+
+	private void testInvalidBook() {
+		assertEquals(BorrowStatus.INVALID_BOOK_ID,
+				booksListServiceImpl.borrowBook(6, new User(1, new LinkedList<Book>())),
+				"it should return invalid book");
+	}
+
+	private void testBorrowFromMultipleCopies() {
+		when(bookDao.getCopiesOfBook(1)).thenReturn(2);
+		when(bookDao.doesBookExist((long) 1)).thenReturn(true);
+		when(bookDao.getBook(1)).thenReturn(new BookCopies(1, "Name1", "Author1", 1));
+		assertEquals(BorrowStatus.SUCCESS, booksListServiceImpl.borrowBook(1, new User(1, new LinkedList<Book>())),
+				"it should return multiple copies");
+	}
+
+	private void testBorrowFromSingleCopies() {
+		when(bookDao.getCopiesOfBook(2)).thenReturn(1);
+		when(bookDao.doesBookExist((long) 2)).thenReturn(true);
+		when(bookDao.getBook(2)).thenReturn(new BookCopies(2, "Name1", "Author1", 1));
+		assertEquals(BorrowStatus.SUCCESS, booksListServiceImpl.borrowBook(2, new User(1, new LinkedList<Book>())),
+				"it should return 1 copy");
+	}
+
+	private void testBorrowNoCopies() {
+		when(bookDao.getCopiesOfBook(3)).thenReturn(0);
+		when(bookDao.doesBookExist((long) 3)).thenReturn(true);
+		assertEquals(BorrowStatus.NOT_ENOUGH_COPIES_LEFT,
+				booksListServiceImpl.borrowBook(3, new User(1, new LinkedList<Book>())), "it should return 0 copies");
+	}
+
+	private void testRepeatedBorrow() {
+		assertEquals(true,
+				booksListServiceImpl.isAlreadyBorrowed(utils.BookTestUtil.getBorrowedBooksTillLimitUtil(), 1),
+				"it should return 0 copies");
+	}
+
 }

@@ -91,3 +91,24 @@ As options for the user are increasing, the Exit option is made final as choice 
 
 The class diagram for this story is-
 ![Test Image 1](Story2.png)
+
+## Story 3-
+```
+User can borrow a copy of a book from the library
+Given , there are more than one copy of a book in the library
+When , I choose a book to add to my borrowed list
+Then , one copy of the book is added to my borrowed list
+And , the library has at least one copy of the book left
+Given , there is only one copy of a book in the library
+When , I choose a book to add to my borrowed list
+Then , one copy of the book is added to my borrowed list
+And , the book is removed from the library
+Note:
+a. Only 1 copy of a book can be borrowed by a User at any point of time
+```
+Design Considerations-
+For this story, we need to add number of copies for each book. Instead of modifying the earlier Book model, we can extend it with a new Model class extending the Book class, to add copies of that book, while giving a new constructor to create books with number of copies. (Open for extension, closed for modification)
+With this, the repository of BookDAO changed to have a map of bookcopies now.
+As child class object can be assigned to parent object, we have no problem in using the remaining code.
+Removed all business logic from DAO to Service Layer
+Made some readability improvements

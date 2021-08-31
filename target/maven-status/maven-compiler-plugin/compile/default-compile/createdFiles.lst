@@ -1,3 +1,4 @@
+models\BookCopies.class
 models\BorrowStatus.class
 dao\BookDAO.class
 LibraryApplication.class
