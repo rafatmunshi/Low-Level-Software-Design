@@ -4,19 +4,21 @@ import java.util.List;
 
 import exceptions.bookListNotFoundException;
 import models.Book;
-import services.BookListService;
+import models.BorrowStatus;
+import models.User;
+import services.BookService;
 
-public class BookListController {
-	private final BookListService bookListService;
+public class BookController {
+	protected final BookService bookService;
 
-	public BookListController(BookListService bookListService) {
-		this.bookListService = bookListService;
+	public BookController(BookService bookService) {
+		this.bookService = bookService;
 	}
 	
 	public void displayBooksInLibrary() {
 		List<Book> booksInLibrary;
 		try {
-			booksInLibrary = bookListService.provideAllBooks();
+			booksInLibrary = bookService.provideAllBooks();
 			if(booksInLibrary==null)
 				System.out.println("The Library is empty");
 			else
@@ -37,4 +39,11 @@ public class BookListController {
 		}
 		
 	}
+	
+	public void borrowBook(long bookId, User user) {
+		BorrowStatus borrowStatus = bookService.borrowBook(bookId, user);
+		System.out.println(borrowStatus.toString());
+}
+
+
 }

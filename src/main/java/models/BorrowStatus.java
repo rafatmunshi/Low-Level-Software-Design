@@ -1,0 +1,10 @@
+package models;
+
+public enum BorrowStatus {
+NO_BOOKS_PRESENT,
+BOOK_BORROWED,
+ERROR,
+BORROW_LIMIT_EXCEEDED,
+INVALID_BOOK_ID,
+SUCCESS
+}

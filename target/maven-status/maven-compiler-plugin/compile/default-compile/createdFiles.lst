@@ -1,8 +1,10 @@
-services\BookListService.class
+models\BorrowStatus.class
 dao\BookDAO.class
 LibraryApplication.class
-controllers\BookListController.class
+models\User.class
+services\BookService.class
+controllers\BookController.class
 dao\BookDAOInMemImpl.class
-services\BooksListServiceImpl.class
+services\BooksServiceImpl.class
 exceptions\bookListNotFoundException.class
 models\Book.class

@@ -63,3 +63,31 @@ A util class is used for tests to avoid repetition (DRY)
 
 The class diagram for this story is-
 ![Test Image 1](Story1.png)
+
+
+## Story 2-
+```
+User can borrow a book from the library
+Given , there are books in the library
+When , I choose a book to add to my borrowed list
+Then , the book is added to my borrowed list
+And , the book is removed from the library
+Note:
+a. Each User has a borrowing limit of 2 books at any point of time
+```
+- Design considerations- 
+A repository of current Library books is created in the Book DAO.
+As the user can borrow books, a User model class is created which would have an ID, and a list of borrowed books. 
+The user can only borrow if library is not empty, hence a new controller method is created for the borrow functionality
+
+- DataStructure:
+The DAO Datastructure of bookRepo is added to facilitate the new functionality of searching through the books list to borrow. Hence an efficient HashMap is used instead of a LinkedList, which is set as soon as books are read, to make borrows efficient.
+An enum borrowStatus model is created to track the various cases while borrowing the book by the user.
+
+- Principles-
+Some names of classes change to generalise them and not introduce unnecessary extra extended classes.
+Some refactoring done to avoid repetition in code (DRY)
+As options for the user are increasing, the Exit option is made final as choice 20, so that the number is not used in code instead the variable name is used to make the code readable.
+
+The class diagram for this story is-
+![Test Image 1](Story2.png)

@@ -11,17 +11,8 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="2" language="java" name="utils.displayBookUtil" project="LibraryManagement" 
-    file="/LibraryManagement/src/test/java/utils/displayBookUtil.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="168" y="262"/>    
-    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
-      sort-features="false" accessors="true" visibility="true">      
-      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
-      <operations public="true" package="true" protected="true" private="true" static="true"/>    
-    </display>  
-  </class>  
-  <interface id="3" language="java" name="services.BookListService" project="LibraryManagement" 
-    file="/LibraryManagement/src/main/java/services/BookListService.java" binary="false" corner="BOTTOM_RIGHT">    
+  <interface id="2" language="java" name="services.BookService" project="LibraryManagement" 
+    file="/LibraryManagement/src/main/java/services/BookService.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="1248" y="719"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
@@ -29,7 +20,7 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </interface>  
-  <interface id="4" language="java" name="dao.BookDAO" project="LibraryManagement" 
+  <interface id="3" language="java" name="dao.BookDAO" project="LibraryManagement" 
     file="/LibraryManagement/src/main/java/dao/BookDAO.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="623" y="719"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
@@ -38,7 +29,7 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </interface>  
-  <class id="5" language="java" name="models.Book" project="LibraryManagement" 
+  <class id="4" language="java" name="models.Book" project="LibraryManagement" 
     file="/LibraryManagement/src/main/java/models/Book.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="998" y="169"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
@@ -47,7 +38,7 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="6" language="java" name="LibraryApplication" project="LibraryManagement" 
+  <class id="5" language="java" name="LibraryApplication" project="LibraryManagement" 
     file="/LibraryManagement/src/main/java/LibraryApplication.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="150" y="414"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
@@ -56,17 +47,8 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="7" language="java" name="controllers.BookListController" project="LibraryManagement" 
-    file="/LibraryManagement/src/main/java/controllers/BookListController.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="1143" y="429"/>    
-    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
-      sort-features="false" accessors="true" visibility="true">      
-      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
-      <operations public="true" package="true" protected="true" private="true" static="true"/>    
-    </display>  
-  </class>  
-  <class id="8" language="java" name="services.BooksListServiceImpl" project="LibraryManagement" 
-    file="/LibraryManagement/src/main/java/services/BooksListServiceImpl.java" binary="false" corner="BOTTOM_RIGHT">    
+  <class id="6" language="java" name="services.BooksServiceImpl" project="LibraryManagement" 
+    file="/LibraryManagement/src/main/java/services/BooksServiceImpl.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="834" y="430"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
@@ -74,9 +56,8 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="9" language="java" name="services.provideBooksListServiceTest" project="LibraryManagement" 
-    file="/LibraryManagement/src/test/java/services/provideBooksListServiceTest.java" binary="false" 
-    corner="BOTTOM_RIGHT">    
+  <class id="7" language="java" name="services.BooksListServiceTest" project="LibraryManagement" 
+    file="/LibraryManagement/src/test/java/services/BooksListServiceTest.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="702" y="167"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
@@ -84,7 +65,7 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="10" language="java" name="controllers.bookListControllerTest" project="LibraryManagement" 
+  <class id="8" language="java" name="controllers.bookListControllerTest" project="LibraryManagement" 
     file="/LibraryManagement/src/test/java/controllers/bookListControllerTest.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="1298" y="197"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
@@ -93,7 +74,7 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="11" language="java" name="dao.BookDAOInMemImpl" project="LibraryManagement" 
+  <class id="9" language="java" name="dao.BookDAOInMemImpl" project="LibraryManagement" 
     file="/LibraryManagement/src/main/java/dao/BookDAOInMemImpl.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="463" y="413"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
@@ -102,94 +83,86 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <association id="12">    
-    <end type="SOURCE" refId="8" navigable="false">      
-      <attribute id="13" name="bookDAO">        
-        <position height="22" width="79" x="581" y="594"/>      
+  <association id="10">    
+    <end type="SOURCE" refId="7" navigable="false">      
+      <attribute id="11" name="books">        
+        <position height="0" width="0" x="0" y="0"/>      
       </attribute>      
-      <multiplicity id="14" minimum="0" maximum="1"/>    
+      <multiplicity id="12" minimum="0" maximum="2147483647">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </multiplicity>    
     </end>    
     <end type="TARGET" refId="4" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <realization id="15">    
-    <end type="SOURCE" refId="8"/>    
+  <realization id="13">    
+    <end type="SOURCE" refId="9"/>    
     <end type="TARGET" refId="3"/>  
   </realization>  
-  <association id="16">    
+  <association id="14">    
+    <bendpoint x="1329" y="431"/>    
+    <end type="SOURCE" refId="8" navigable="false">      
+      <attribute id="15" name="bookListService">        
+        <position height="22" width="126" x="1137" y="613"/>      
+      </attribute>      
+      <multiplicity id="16" minimum="0" maximum="1">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="2" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="17">    
+    <end type="SOURCE" refId="6" navigable="false">      
+      <attribute id="18" name="bookDAO">        
+        <position height="22" width="79" x="581" y="594"/>      
+      </attribute>      
+      <multiplicity id="19" minimum="0" maximum="1">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="3" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="20">    
+    <end type="SOURCE" refId="8" navigable="false">      
+      <attribute id="21" name="books">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </attribute>      
+      <multiplicity id="22" minimum="0" maximum="2147483647">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="4" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <realization id="23">    
+    <end type="SOURCE" refId="6"/>    
+    <end type="TARGET" refId="2"/>  
+  </realization>  
+  <association id="24">    
+    <end type="SOURCE" refId="7" navigable="false">      
+      <attribute id="25" name="booksListServiceImpl">        
+        <position height="22" width="162" x="705" y="312"/>      
+      </attribute>      
+      <multiplicity id="26" minimum="0" maximum="1">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="6" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="27">    
     <bendpoint x="636" y="367"/>    
-    <end type="SOURCE" refId="9" navigable="false">      
-      <attribute id="17" name="bookDao">        
+    <end type="SOURCE" refId="7" navigable="false">      
+      <attribute id="28" name="bookDao">        
         <position height="22" width="78" x="489" y="634"/>      
       </attribute>      
-      <multiplicity id="18" minimum="0" maximum="1">        
+      <multiplicity id="29" minimum="0" maximum="1">        
         <position height="20" width="31" x="635" y="567"/>      
       </multiplicity>    
     </end>    
-    <end type="TARGET" refId="4" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <association id="19">    
-    <end type="SOURCE" refId="10" navigable="false">      
-      <attribute id="20" name="books"/>      
-      <multiplicity id="21" minimum="0" maximum="2147483647"/>    
-    </end>    
-    <end type="TARGET" refId="5" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <realization id="22">    
-    <end type="SOURCE" refId="11"/>    
-    <end type="TARGET" refId="4"/>  
-  </realization>  
-  <association id="23">    
-    <end type="SOURCE" refId="9" navigable="false">      
-      <attribute id="24" name="books"/>      
-      <multiplicity id="25" minimum="0" maximum="2147483647"/>    
-    </end>    
-    <end type="TARGET" refId="5" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <association id="26">    
-    <end type="SOURCE" refId="7" navigable="false">      
-      <attribute id="27" name="bookListService">        
-        <position height="22" width="122" x="986" y="623"/>      
-      </attribute>      
-      <multiplicity id="28" minimum="0" maximum="1">        
-        <position height="20" width="31" x="1215" y="586"/>      
-      </multiplicity>    
-    </end>    
     <end type="TARGET" refId="3" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <association id="29">    
-    <end type="SOURCE" refId="9" navigable="false">      
-      <attribute id="30" name="booksListServiceImpl">        
-        <position height="22" width="162" x="705" y="312"/>      
-      </attribute>      
-      <multiplicity id="31" minimum="0" maximum="1"/>    
-    </end>    
-    <end type="TARGET" refId="8" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <association id="32">    
-    <bendpoint x="1329" y="431"/>    
-    <end type="SOURCE" refId="10" navigable="false">      
-      <attribute id="33" name="bookListService">        
-        <position height="22" width="126" x="1137" y="613"/>      
-      </attribute>      
-      <multiplicity id="34" minimum="0" maximum="1"/>    
-    </end>    
-    <end type="TARGET" refId="3" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <association id="35">    
-    <end type="SOURCE" refId="10" navigable="false">      
-      <attribute id="36" name="bookListController"/>      
-      <multiplicity id="37" minimum="0" maximum="1">        
-        <position height="20" width="31" x="1212" y="327"/>      
-      </multiplicity>    
-    </end>    
-    <end type="TARGET" refId="7" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
   <classifier-display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 

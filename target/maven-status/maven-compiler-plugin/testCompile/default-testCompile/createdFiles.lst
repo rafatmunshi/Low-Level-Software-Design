@@ -1,3 +1,5 @@
-services\provideBooksListServiceTest.class
+services\BooksListServiceTest.class
+utils\BookTestUtil.class
 controllers\bookListControllerTest.class
-utils\displayBookUtil.class
+ApplicationTest.class
+dao\InMemDAOTests.class
