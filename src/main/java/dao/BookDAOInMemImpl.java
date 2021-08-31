@@ -8,9 +8,9 @@ import java.util.Map;
 import models.Book;
 import models.BookCopies;
 import models.BorrowStatus;
+import models.ReturnStatus;
 import models.User;
 
-// This is implementation of the DAO to return data created in memory
 public class BookDAOInMemImpl implements BookDAO {
 	static Map<Long, BookCopies> bookRepo= new HashMap<Long, BookCopies>();
 	public BookDAOInMemImpl() {
@@ -30,8 +30,12 @@ public class BookDAOInMemImpl implements BookDAO {
 
 	@Override
 	public Integer getCopiesOfBook(long bookId) {
-		int copies=bookRepo.get(bookId).getCopiesOfBook();
-		return copies;
+		int copies=0;
+		if(getBook(bookId)!=null) {
+			copies=bookRepo.get(bookId).getCopiesOfBook();
+			return copies;
+		}
+		return null;
 	}
 	@Override
 	public Boolean doesBookExist(long bookId) {
@@ -44,6 +48,16 @@ public class BookDAOInMemImpl implements BookDAO {
 	@Override
 	public BookCopies removeBook(long bookId) {
 		return bookRepo.remove(bookId);
+	}
+	@Override
+	public void addBookToRepo(Book book) {
+		long bookId= book.getID();
+		if(getBook(bookId)!=null)
+			getBook(bookId).setCopiesOfBook(getCopiesOfBook(bookId) + 1);
+		else {
+			BookCopies bookCopy= new BookCopies(book.getID(), book.getName(), book.getAuthor(), 1);
+			bookRepo.put(bookCopy.getID(), bookCopy);
+		}
 	}
 
 }

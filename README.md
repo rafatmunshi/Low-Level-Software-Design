@@ -116,3 +116,22 @@ Made some readability improvements
 
 The class diagram for this story is-
 ![Test Image 1](Story3.png)
+
+## Story 4-
+```
+User can return books to the library
+Given , I have 2 books in my borrowed list
+When , I return one book to the library
+Then , the book is removed from my borrowed list
+And , the library reflects the updated stock of the book
+Given , I have 2 books in my borrowed list
+When , I return both books to the library
+Then , my borrowed list is empty
+And , the library reflects the updated stock of the books
+```
+
+Refactored code to add conditions.
+
+- Principles-
+Overall, for all the stories Java Class Structure is created in such a way that levels of abstraction are achieved with the layers. This makes it more maintainable. Having interfaces like Service, DAO and their implementations- ServiceImpl, DAOImpl differently helps us to program to an interface instead of implementation so that we may be able to extend instead of modify; or use another implementation for the interfaces without changing anything where those interfaces are used (for dependency inversion). This gives flexibility and maintainability.
+

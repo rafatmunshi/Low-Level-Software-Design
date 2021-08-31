@@ -18,6 +18,7 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import exceptions.bookListNotFoundException;
 import models.Book;
 import models.BorrowStatus;
+import models.ReturnStatus;
 import models.User;
 import services.BookService;
 
@@ -95,6 +96,44 @@ public class bookControllerTest {
 		assertEquals(true, outContent.toString().contains("NO_BOOKS_PRESENT"), "it should print NO_BOOKS_PRESENT");
 	}
 
+	@DisplayName("On call to return a book")
+	@Test
+	public void testReturnABook() {
+		testBookBorrowedForReturn();
+		testBookReturnSuccess();
+	}
+	private void testBookReturnSuccess() {
+		when(bookListService.returnABook(1, null)).thenReturn(ReturnStatus.RETURN_SUCCESSFUL);
+		bookListController.returnABook(1, null);
+		// Assert
+		assertEquals(true, outContent.toString().contains("RETURN_SUCCESSFUL"));
+	}
+
+	@DisplayName("On call to return both books")
+	@Test
+	public void testReturnBothBooks() {
+		testNoBooksToReturn();
+		testReturnsBooksSuccess();
+	}
+
+	private void testReturnsBooksSuccess() {
+		when(bookListService.returnBothBooks(null)).thenReturn(ReturnStatus.RETURN_SUCCESSFUL);
+		bookListController.returnBothBooks(null);
+		assertEquals(true, outContent.toString().contains("RETURN_SUCCESSFUL"));
+	}
+
+	private void testNoBooksToReturn() {
+		when(bookListService.returnBothBooks(null)).thenReturn(ReturnStatus.NO_BOOKS_TO_RETURN);
+		bookListController.returnBothBooks(null);
+		assertEquals(true, outContent.toString().contains("NO_BOOKS_TO_RETURN"));
+	}
+
+	private void testBookBorrowedForReturn() {
+		when(bookListService.returnABook(1, null)).thenReturn(ReturnStatus.INVALID_BOOK_ID);
+		bookListController.returnABook(1, null);
+		assertEquals(true, outContent.toString().contains("INVALID_BOOK_ID"));
+	}
+	
 	@AfterEach
 	public void revertStreams() {
 		System.setOut(sysOut);

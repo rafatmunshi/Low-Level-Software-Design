@@ -5,6 +5,8 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import models.Book;
+
 public class InMemDAOTests {
 	static BookDAOInMemImpl bookDAOInMemImpl;
 
@@ -39,9 +41,12 @@ public class InMemDAOTests {
 		assertEquals(true, bookDAOInMemImpl.doesBookExist(1), "it should return true as book exists");
 	}
 
-	@DisplayName("On getting book based on ID")
+	@DisplayName("On adding a book to Repo")
 	@Test
-	public void getBook() {
-		assertEquals(1, bookDAOInMemImpl.getBook(1).getID(), "it should get the correct book with ID 1");
+	public void addBookToRepo() {
+		bookDAOInMemImpl.addBookToRepo(new Book(1, null, null));
+		assertEquals(3, bookDAOInMemImpl.getBook(1).getCopiesOfBook(), "it should increment the copies of book with ID 1");
+		bookDAOInMemImpl.addBookToRepo(new Book(6, null, null));
+		assertEquals(6, bookDAOInMemImpl.getBook(6).getID(), "it should add the book with ID 6");
 	}
 }

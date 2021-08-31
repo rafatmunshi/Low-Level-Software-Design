@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report.xsd" name="ApplicationTest" time="0.011" tests="1" errors="0" skipped="0" failures="0">
+<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report.xsd" name="ApplicationTest" time="0.021" tests="5" errors="0" skipped="0" failures="0">
   <properties>
     <property name="java.specification.version" value="14"/>
     <property name="sun.cpu.isalist" value="amd64"/>
@@ -15,7 +15,7 @@
     <property name="sun.java.launcher" value="SUN_STANDARD"/>
     <property name="user.country" value="IN"/>
     <property name="sun.boot.library.path" value="C:\Program Files\Java\jdk-14\bin"/>
-    <property name="sun.java.command" value="C:\Users\DELL\AppData\Local\Temp\surefire7968527075117002231\surefirebooter14104618016934419918.jar C:\Users\DELL\AppData\Local\Temp\surefire7968527075117002231 2021-08-31T09-46-45_318-jvmRun1 surefire5959502505363546672tmp surefire_012233325295321403899tmp"/>
+    <property name="sun.java.command" value="C:\Users\DELL\AppData\Local\Temp\surefire14395190060409535617\surefirebooter8112499727380900257.jar C:\Users\DELL\AppData\Local\Temp\surefire14395190060409535617 2021-09-01T03-01-49_782-jvmRun1 surefire13552742153853127484tmp surefire_013658354671994713440tmp"/>
     <property name="jdk.debug" value="release"/>
     <property name="surefire.test.class.path" value="C:\Users\DELL\Desktop\Library Management System\target\test-classes;C:\Users\DELL\Desktop\Library Management System\target\classes;C:\Users\DELL\.m2\repository\org\junit\jupiter\junit-jupiter-api\5.4.2\junit-jupiter-api-5.4.2.jar;C:\Users\DELL\.m2\repository\org\apiguardian\apiguardian-api\1.0.0\apiguardian-api-1.0.0.jar;C:\Users\DELL\.m2\repository\org\opentest4j\opentest4j\1.1.1\opentest4j-1.1.1.jar;C:\Users\DELL\.m2\repository\org\junit\platform\junit-platform-commons\1.4.2\junit-platform-commons-1.4.2.jar;C:\Users\DELL\.m2\repository\org\junit\jupiter\junit-jupiter-engine\5.4.2\junit-jupiter-engine-5.4.2.jar;C:\Users\DELL\.m2\repository\org\junit\platform\junit-platform-engine\1.4.2\junit-platform-engine-1.4.2.jar;C:\Users\DELL\.m2\repository\org\mockito\mockito-inline\3.12.4\mockito-inline-3.12.4.jar;C:\Users\DELL\.m2\repository\org\mockito\mockito-core\3.12.4\mockito-core-3.12.4.jar;C:\Users\DELL\.m2\repository\net\bytebuddy\byte-buddy\1.11.13\byte-buddy-1.11.13.jar;C:\Users\DELL\.m2\repository\net\bytebuddy\byte-buddy-agent\1.11.13\byte-buddy-agent-1.11.13.jar;C:\Users\DELL\.m2\repository\org\objenesis\objenesis\3.2\objenesis-3.2.jar;C:\Users\DELL\.m2\repository\org\mockito\mockito-junit-jupiter\3.12.4\mockito-junit-jupiter-3.12.4.jar;"/>
     <property name="sun.cpu.endian" value="little"/>
@@ -30,7 +30,7 @@
     <property name="line.separator" value="&#10;"/>
     <property name="java.vm.specification.vendor" value="Oracle Corporation"/>
     <property name="java.specification.name" value="Java Platform API Specification"/>
-    <property name="surefire.real.class.path" value="C:\Users\DELL\AppData\Local\Temp\surefire7968527075117002231\surefirebooter14104618016934419918.jar"/>
+    <property name="surefire.real.class.path" value="C:\Users\DELL\AppData\Local\Temp\surefire14395190060409535617\surefirebooter8112499727380900257.jar"/>
     <property name="user.script" value=""/>
     <property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers"/>
     <property name="java.runtime.version" value="14+36-1461"/>
@@ -55,5 +55,9 @@
     <property name="sun.io.unicode.encoding" value="UnicodeLittle"/>
     <property name="java.class.version" value="58.0"/>
   </properties>
-  <testcase name="testLibraryBooksNull" classname="ApplicationTest" time="0.008"/>
+  <testcase name="showOptions" classname="ApplicationTest" time="0.009"/>
+  <testcase name="showReturnAllOption" classname="ApplicationTest" time="0"/>
+  <testcase name="showBorrowOption" classname="ApplicationTest" time="0.002"/>
+  <testcase name="showReturnABookOption" classname="ApplicationTest" time="0.001"/>
+  <testcase name="showListOption" classname="ApplicationTest" time="0.001"/>
 </testsuite>

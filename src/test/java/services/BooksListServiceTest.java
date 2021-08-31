@@ -17,6 +17,7 @@ import exceptions.bookListNotFoundException;
 import models.Book;
 import models.BookCopies;
 import models.BorrowStatus;
+import models.ReturnStatus;
 import models.User;
 
 import org.mockito.Mock;
@@ -127,6 +128,53 @@ public class BooksListServiceTest {
 		assertEquals(true,
 				booksListServiceImpl.isAlreadyBorrowed(utils.BookTestUtil.getBorrowedBooksTillLimitUtil(), 1),
 				"it should return 0 copies");
+	}
+	@DisplayName("On call to return a book")
+	@Test
+	public void testReturnABook() {
+		testBookBorrowedForReturn();
+		testBookReturnSuccess();
+	}
+
+	private void testBookBorrowedForReturn() {
+		Book book= new Book(1, null, null);
+		List<Book> books=new LinkedList<Book>();
+		books.add(book);
+		User user= new User(1, books);
+		assertEquals(true,booksListServiceImpl.checkValidBook(1, user));
+		assertEquals(false,booksListServiceImpl.checkValidBook(2, user));
+	}
+	private void testBookReturnSuccess() {
+		Book book= new Book(1, null, null);
+		List<Book> books=new LinkedList<Book>();
+		books.add(book);
+		User user= new User(1, books);
+		assertEquals(ReturnStatus.INVALID_BOOK_ID, booksListServiceImpl.returnABook(2, user));
+		assertEquals(ReturnStatus.RETURN_SUCCESSFUL, booksListServiceImpl.returnABook(1, user));
+		assertEquals(0, user.getBorrowedBooks().size());
+	}
+
+	@DisplayName("On call to return both books")
+	@Test
+	public void testReturnBothBooks() {
+		testNoBooksToReturn();
+		testReturnsBooksSuccess();
+	}
+
+	private void testReturnsBooksSuccess() {
+		Book book1= new Book(1, null, null);
+		Book book2= new Book(2, null, null);
+		List<Book> books=new LinkedList<Book>();
+		books.add(book1);
+		books.add(book2);
+		User user= new User(1, books);
+		assertEquals(ReturnStatus.RETURN_SUCCESSFUL,booksListServiceImpl.returnBothBooks(user));
+		assertEquals(0, user.getBorrowedBooks().size());
+	}
+
+	private void testNoBooksToReturn() {
+		User user= new User(1, new LinkedList<Book>());
+		assertEquals(ReturnStatus.NO_BOOKS_TO_RETURN,booksListServiceImpl.returnBothBooks(user));
 	}
 
 }

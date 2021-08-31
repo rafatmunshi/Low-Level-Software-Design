@@ -34,9 +34,25 @@ public class LibraryApplication {
 		case 2:
 			borrowBook();
 			break;
+		case 3:
+			returnABook();
+			break;
+		case 4:
+			returnBothBooks();
+			break;
 		default:
 			System.out.println("Invalid choice");
 		}
+	}
+
+	private static void returnBothBooks() {
+		forThisSpecificImpl.returnBothBooks(currentUser);
+	}
+
+	private static void returnABook() {
+		System.out.println("Which book do you want to return? Mention its ID");
+		long bookId = takeChoiceFromUser();
+		forThisSpecificImpl.returnABook(bookId, currentUser);
 	}
 
 	private static void borrowBook() {
@@ -59,6 +75,8 @@ public class LibraryApplication {
 		System.out.println("Choose an option-");
 		System.out.println("1. View Books in the Library");
 		System.out.println("2. Borrow a book");
+		System.out.println("3. Return a book");
+		System.out.println("4. Return both books");
 		System.out.println("20. Exit");
 	}
 }

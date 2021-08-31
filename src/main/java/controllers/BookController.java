@@ -5,6 +5,7 @@ import java.util.List;
 import exceptions.bookListNotFoundException;
 import models.Book;
 import models.BorrowStatus;
+import models.ReturnStatus;
 import models.User;
 import services.BookService;
 
@@ -41,6 +42,16 @@ public class BookController {
 	public void borrowBook(long bookId, User user) {
 		BorrowStatus borrowStatus = bookService.borrowBook(bookId, user);
 		System.out.println(borrowStatus.toString());
+	}
+	
+	public void returnABook(long bookId, User user) {
+		ReturnStatus returnStatus = bookService.returnABook(bookId, user);
+		System.out.println(returnStatus.toString());
+	}
+
+	public void returnBothBooks(User user) {
+		ReturnStatus returnStatus = bookService.returnBothBooks(user);
+		System.out.println(returnStatus.toString());
 	}
 
 }
