@@ -22,7 +22,7 @@ import models.User;
 import services.BookService;
 
 @ExtendWith(MockitoExtension.class)
-public class bookListControllerTest {
+public class bookControllerTest {
 	@Mock
 	BookService bookListService;
 	

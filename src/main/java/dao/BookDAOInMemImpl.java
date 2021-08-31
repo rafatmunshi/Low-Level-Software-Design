@@ -26,6 +26,10 @@ public class BookDAOInMemImpl implements BookDAO {
 			bookList.add(book);
 		return bookList;
 	}
+	
+	public Map<Long, Book> getBookRepoMap(){
+		return bookRepo;
+	}
 	@Override
 	public BorrowStatus borrowBook(long bookId, User user) {
 		if(bookRepo.containsKey(bookId)) {

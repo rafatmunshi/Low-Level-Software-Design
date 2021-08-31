@@ -55,8 +55,6 @@ public class BooksListServiceTest {
 		when(bookDao.getAllBooks()).thenReturn(utils.BookTestUtil.getAllBooksUtil());
 		assertEquals(false, booksListServiceImpl.provideAllBooks().isEmpty(), "it returns full books list");
 	}
-
-//	bookAlreadyBorrowedTest();
 	
 	@DisplayName("On request to Borrow a book")
 	@Test

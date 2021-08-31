@@ -31,14 +31,12 @@ public class InMemDAOTests {
 		assertEquals(utils.BookTestUtil.getAllBooksUtil().get(0).getID(), bookDAOInMemImpl.getAllBooks().get(0).getID(), "it returns all books list");
 	}
 	
-	
 	@DisplayName("On call to borrow a book")
 	@Test
 	public void testBorrowBook() {
 		User user=new User(1, new LinkedList<Book>());
 		LinkedList<Book> newList=new LinkedList<Book>();
 		newList.add(new Book(1, "Name1", "Author1"));
-		
 		assertEquals(BorrowStatus.SUCCESS, bookDAOInMemImpl.borrowBook(1, user), "it returns success");
 		assertEquals(1, user.getBorrowedBooks().get(0).getID(), "it adds to the user's borrowed books list");
 		assertEquals(null, bookDAOInMemImpl.bookRepo.get(1), "it removes the book from the repository list");
