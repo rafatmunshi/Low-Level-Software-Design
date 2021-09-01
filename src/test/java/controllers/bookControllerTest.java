@@ -15,7 +15,7 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
-import exceptions.bookListNotFoundException;
+import exceptions.BookListNotFoundException;
 import models.Book;
 import models.BorrowStatus;
 import models.ReturnStatus;
@@ -23,7 +23,7 @@ import models.User;
 import services.BookService;
 
 @ExtendWith(MockitoExtension.class)
-public class bookControllerTest {
+public class BookControllerTest {
 	@Mock
 	BookService bookListService;
 
@@ -41,15 +41,15 @@ public class bookControllerTest {
 
 	@DisplayName("On call to list library books")
 	@Test
-	public void testLibraryBooksNull() throws bookListNotFoundException {
-		when(bookListService.provideAllBooks()).thenThrow(bookListNotFoundException.class);
+	public void testLibraryBooksNull() throws BookListNotFoundException {
+		when(bookListService.provideAllBooks()).thenThrow(BookListNotFoundException.class);
 		bookListController.displayBooksInLibrary();
 		assertEquals(outContent.toString(), "", "it catches and prints exception");
 	}
 
 	@DisplayName("On call to list library books")
 	@Test
-	public void testLibraryBooksEmpty() throws bookListNotFoundException {
+	public void testLibraryBooksEmpty() throws BookListNotFoundException {
 		when(bookListService.provideAllBooks()).thenReturn(null);
 		bookListController.displayBooksInLibrary();
 		assertEquals(outContent.toString(), "The Library is empty" + System.lineSeparator(),
@@ -58,7 +58,7 @@ public class bookControllerTest {
 
 	@DisplayName("On call to list library books")
 	@Test
-	public void testLibraryBooksFull() throws bookListNotFoundException {
+	public void testLibraryBooksFull() throws BookListNotFoundException {
 		when(bookListService.provideAllBooks()).thenReturn(utils.BookTestUtil.getAllBooksUtil());
 		bookListController.displayBooksInLibrary();
 		assertEquals(outContent.toString().startsWith("The books presently in the Library are:"), true,
@@ -67,14 +67,14 @@ public class bookControllerTest {
 
 	@DisplayName("On call to borrow a book")
 	@Test
-	public void testBorrowBook() throws bookListNotFoundException {
+	public void testBorrowBook() throws BookListNotFoundException {
 		testBorrowLimitExceeded();
 
 		testBookBorrowSuccess();
 		testNoBooksToBorrow();
 	}
 
-	private void testBorrowLimitExceeded() throws bookListNotFoundException {
+	private void testBorrowLimitExceeded() throws BookListNotFoundException {
 		User user = new User(1, new LinkedList<Book>());
 		when(bookListService.borrowBook((long) 1, user)).thenReturn(BorrowStatus.BORROW_LIMIT_EXCEEDED);
 		bookListController.borrowBook((long) 1, user);

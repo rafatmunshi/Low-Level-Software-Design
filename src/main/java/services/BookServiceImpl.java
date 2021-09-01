@@ -4,7 +4,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 import dao.BookDAO;
-import exceptions.bookListNotFoundException;
+import exceptions.BookListNotFoundException;
 import models.Book;
 import models.BorrowStatus;
 import models.ReturnStatus;
@@ -19,10 +19,10 @@ public class BookServiceImpl implements BookService {
 	}
 
 	@Override
-	public List<Book> provideAllBooks() throws bookListNotFoundException {
+	public List<Book> provideAllBooks() throws BookListNotFoundException {
 		List<Book> booksList = bookDAO.getAllBooks();
 		if (booksList == null)
-			throw new bookListNotFoundException("The books list could not be retrieved at the moment");
+			throw new BookListNotFoundException("The books list could not be retrieved at the moment");
 		else if (booksList.isEmpty())
 			return null;
 		else
@@ -40,7 +40,7 @@ public class BookServiceImpl implements BookService {
 			} else {
 				return borrowBookUtil(bookId, user);
 			}
-		} catch (bookListNotFoundException e) {
+		} catch (BookListNotFoundException e) {
 			e.printStackTrace();
 			return BorrowStatus.ERROR;
 		}

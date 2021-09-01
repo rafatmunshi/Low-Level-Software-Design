@@ -2,7 +2,7 @@ package controllers;
 
 import java.util.List;
 
-import exceptions.bookListNotFoundException;
+import exceptions.BookListNotFoundException;
 import models.Book;
 import models.BookCopies;
 import models.BorrowStatus;
@@ -26,7 +26,7 @@ public class BookController {
 			else {
 				displayAllBooksFromList(booksInLibrary);
 			}
-		} catch (bookListNotFoundException e) {
+		} catch (BookListNotFoundException e) {
 			e.printStackTrace();
 		}
 

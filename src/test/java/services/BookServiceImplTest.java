@@ -13,7 +13,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.junit.jupiter.MockitoExtension;
 import dao.BookDAO;
-import exceptions.bookListNotFoundException;
+import exceptions.BookListNotFoundException;
 import models.Book;
 import models.BookCopies;
 import models.BorrowStatus;
@@ -39,23 +39,23 @@ public class BookServiceImplTest {
 
 	@DisplayName("On call to list library books")
 	@Test
-	public void testLibraryBooksNull() throws bookListNotFoundException {
+	public void testLibraryBooksNull() throws BookListNotFoundException {
 		assertNotNull(bookDao);
 		when(bookDao.getAllBooks()).thenReturn(null);
-		assertThrows(bookListNotFoundException.class, () -> booksListServiceImpl.provideAllBooks(),
+		assertThrows(BookListNotFoundException.class, () -> booksListServiceImpl.provideAllBooks(),
 				"it should throw not found exception");
 	}
 
 	@DisplayName("On call to list library books")
 	@Test
-	public void testLibraryBooksEmpty() throws bookListNotFoundException {
+	public void testLibraryBooksEmpty() throws BookListNotFoundException {
 		when(bookDao.getAllBooks()).thenReturn(new LinkedList<Book>());
 		assertEquals(null, booksListServiceImpl.provideAllBooks(), "it should return null");
 	}
 
 	@DisplayName("On call to list library books")
 	@Test
-	public void testLibraryBooksFull() throws bookListNotFoundException {
+	public void testLibraryBooksFull() throws BookListNotFoundException {
 		when(bookDao.getAllBooks()).thenReturn(utils.BookTestUtil.getAllBooksUtil());
 		assertEquals(false, booksListServiceImpl.provideAllBooks().isEmpty(), "it should return full books list");
 	}

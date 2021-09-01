@@ -1,7 +1,7 @@
 package exceptions;
 
-public class bookListNotFoundException extends Exception {
-	public bookListNotFoundException(String errorMessage) {
+public class BookListNotFoundException extends Exception {
+	public BookListNotFoundException(String errorMessage) {
 		super(errorMessage);
 	}
 }
