@@ -131,7 +131,7 @@ public class bookControllerTest {
 	private void testBookBorrowedForReturn() {
 		when(bookListService.returnABook(1, null)).thenReturn(ReturnStatus.INVALID_BOOK_ID);
 		bookListController.returnABook(1, null);
-		assertEquals(true, outContent.toString().contains("INVALID_BOOK_ID"), , "it should valid book is absent");
+		assertEquals(true, outContent.toString().contains("INVALID_BOOK_ID"), "it should valid book is absent");
 	}
 	
 	@AfterEach
