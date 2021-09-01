@@ -10,11 +10,11 @@ import models.BorrowStatus;
 import models.ReturnStatus;
 import models.User;
 
-public class BooksServiceImpl implements BookService {
+public class BookServiceImpl implements BookService {
 
 	protected final BookDAO bookDAO;
 
-	public BooksServiceImpl(BookDAO bookDAO) {
+	public BookServiceImpl(BookDAO bookDAO) {
 		this.bookDAO = bookDAO;
 	}
 

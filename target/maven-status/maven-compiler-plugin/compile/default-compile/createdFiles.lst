@@ -1,12 +1,12 @@
 models\BookCopies.class
 models\BorrowStatus.class
+services\BookServiceImpl.class
 dao\BookDAO.class
 LibraryApplication.class
 models\User.class
 services\BookService.class
 controllers\BookController.class
 dao\BookDAOInMemImpl.class
-services\BooksServiceImpl.class
 exceptions\bookListNotFoundException.class
 models\ReturnStatus.class
 models\Book.class

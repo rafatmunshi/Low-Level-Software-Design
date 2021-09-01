@@ -5,11 +5,11 @@ import controllers.BookController;
 import dao.BookDAOInMemImpl;
 import models.Book;
 import models.User;
-import services.BooksServiceImpl;
+import services.BookServiceImpl;
 
 public class LibraryApplication {
 	static final int EXIT = 20;
-	static final BookController forThisSpecificImpl = new BookController(new BooksServiceImpl(new BookDAOInMemImpl()));
+	static final BookController forThisSpecificImpl = new BookController(new BookServiceImpl(new BookDAOInMemImpl()));
 	static final User currentUser = new User(1, new LinkedList<Book>());
 
 	public static void main(String[] args) {

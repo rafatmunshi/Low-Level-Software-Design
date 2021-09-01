@@ -24,17 +24,17 @@ import org.mockito.Mock;
 import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
-public class BooksListServiceTest {
+public class BookServiceImplTest {
 	@Mock
 	BookDAO bookDao;
 
-	static BooksServiceImpl booksListServiceImpl;
+	static BookServiceImpl booksListServiceImpl;
 	List<Book> books;
 	static final User user = new User(1, new LinkedList<Book>());
 
 	@BeforeEach
 	public void init() {
-		booksListServiceImpl = new BooksServiceImpl(bookDao);
+		booksListServiceImpl = new BookServiceImpl(bookDao);
 	}
 
 	@DisplayName("On call to list library books")
