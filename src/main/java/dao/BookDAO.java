@@ -9,10 +9,15 @@ import models.ReturnStatus;
 import models.User;
 
 public interface BookDAO {
-List<Book> getAllBooks();
-Integer getCopiesOfBook(long bookId);
-Boolean doesBookExist(long bookId);
-BookCopies getBook(long bookId);
-BookCopies removeBook(long bookId);
-void addBookToRepo(Book book);
+	List<Book> getAllBooks();
+
+	Integer getCopiesOfBook(long bookId);
+
+	Boolean doesBookExist(long bookId);
+
+	BookCopies getBook(long bookId);
+
+	BookCopies removeBook(long bookId);
+
+	void addBookToRepo(Book book);
 }

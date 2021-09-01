@@ -129,6 +129,7 @@ public class BooksListServiceTest {
 				booksListServiceImpl.isAlreadyBorrowed(utils.BookTestUtil.getBorrowedBooksTillLimitUtil(), 1),
 				"it should return 0 copies");
 	}
+
 	@DisplayName("On call to return a book")
 	@Test
 	public void testReturnABook() {
@@ -137,20 +138,23 @@ public class BooksListServiceTest {
 	}
 
 	private void testBookBorrowedForReturn() {
-		Book book= new Book(1, null, null);
-		List<Book> books=new LinkedList<Book>();
+		Book book = new Book(1, null, null);
+		List<Book> books = new LinkedList<Book>();
 		books.add(book);
-		User user= new User(1, books);
-		assertEquals(true,booksListServiceImpl.checkValidBook(1, user), "it should validate that book is present");
-		assertEquals(false,booksListServiceImpl.checkValidBook(2, user), "it should validate that book is absent");
+		User user = new User(1, books);
+		assertEquals(true, booksListServiceImpl.checkValidBook(1, user), "it should validate that book is present");
+		assertEquals(false, booksListServiceImpl.checkValidBook(2, user), "it should validate that book is absent");
 	}
+
 	private void testBookReturnSuccess() {
-		Book book= new Book(1, null, null);
-		List<Book> books=new LinkedList<Book>();
+		Book book = new Book(1, null, null);
+		List<Book> books = new LinkedList<Book>();
 		books.add(book);
-		User user= new User(1, books);
-		assertEquals(ReturnStatus.INVALID_BOOK_ID, booksListServiceImpl.returnABook(2, user), "it should validate that book is absent");
-		assertEquals(ReturnStatus.RETURN_SUCCESSFUL, booksListServiceImpl.returnABook(1, user), "it should return successfully");
+		User user = new User(1, books);
+		assertEquals(ReturnStatus.INVALID_BOOK_ID, booksListServiceImpl.returnABook(2, user),
+				"it should validate that book is absent");
+		assertEquals(ReturnStatus.RETURN_SUCCESSFUL, booksListServiceImpl.returnABook(1, user),
+				"it should return successfully");
 		assertEquals(0, user.getBorrowedBooks().size());
 	}
 
@@ -162,19 +166,21 @@ public class BooksListServiceTest {
 	}
 
 	private void testReturnsBooksSuccess() {
-		Book book1= new Book(1, null, null);
-		Book book2= new Book(2, null, null);
-		List<Book> books=new LinkedList<Book>();
+		Book book1 = new Book(1, null, null);
+		Book book2 = new Book(2, null, null);
+		List<Book> books = new LinkedList<Book>();
 		books.add(book1);
 		books.add(book2);
-		User user= new User(1, books);
-		assertEquals(ReturnStatus.RETURN_SUCCESSFUL,booksListServiceImpl.returnBothBooks(user),  "it should return successfully");
+		User user = new User(1, books);
+		assertEquals(ReturnStatus.RETURN_SUCCESSFUL, booksListServiceImpl.returnBothBooks(user),
+				"it should return successfully");
 		assertEquals(0, user.getBorrowedBooks().size());
 	}
 
 	private void testNoBooksToReturn() {
-		User user= new User(1, new LinkedList<Book>());
-		assertEquals(ReturnStatus.NO_BOOKS_TO_RETURN,booksListServiceImpl.returnBothBooks(user),  "it should signify no books to return");
+		User user = new User(1, new LinkedList<Book>());
+		assertEquals(ReturnStatus.NO_BOOKS_TO_RETURN, booksListServiceImpl.returnBothBooks(user),
+				"it should signify no books to return");
 	}
 
 }

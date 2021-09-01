@@ -17,6 +17,7 @@ public class BooksServiceImpl implements BookService {
 	public BooksServiceImpl(BookDAO bookDAO) {
 		this.bookDAO = bookDAO;
 	}
+
 	@Override
 	public List<Book> provideAllBooks() throws bookListNotFoundException {
 		List<Book> booksList = bookDAO.getAllBooks();
@@ -27,6 +28,7 @@ public class BooksServiceImpl implements BookService {
 		else
 			return booksList;
 	}
+
 	@Override
 	public BorrowStatus borrowBook(long bookId, User user) {
 		List<Book> booksInLibrary;
@@ -36,7 +38,7 @@ public class BooksServiceImpl implements BookService {
 			if (booksInLibrary == null) {
 				return BorrowStatus.NO_BOOKS_PRESENT;
 			} else {
-				return borrowBookUtil(bookId, user);	
+				return borrowBookUtil(bookId, user);
 			}
 		} catch (bookListNotFoundException e) {
 			e.printStackTrace();
@@ -46,7 +48,7 @@ public class BooksServiceImpl implements BookService {
 	}
 
 	private BorrowStatus borrowBookUtil(long bookId, User user) {
-		if(checkBorrowLimitExceed(user))
+		if (checkBorrowLimitExceed(user))
 			return BorrowStatus.BORROW_LIMIT_EXCEEDED;
 		if (bookDAO.doesBookExist(bookId)) {
 			Integer copies = bookDAO.getCopiesOfBook(bookId);
@@ -60,7 +62,7 @@ public class BooksServiceImpl implements BookService {
 			}
 		} else
 			return BorrowStatus.INVALID_BOOK_ID;
-		
+
 	}
 
 	private Boolean checkBorrowLimitExceed(User user) {
@@ -101,7 +103,7 @@ public class BooksServiceImpl implements BookService {
 
 	@Override
 	public ReturnStatus returnABook(long bookId, User user) {
-		if(!checkValidBook(bookId, user))
+		if (!checkValidBook(bookId, user))
 			return ReturnStatus.INVALID_BOOK_ID;
 		else {
 			// these two have to be atomic else book can be lost
@@ -112,10 +114,10 @@ public class BooksServiceImpl implements BookService {
 	}
 
 	private void addBookToRepo(long bookId, User user) {
-			List<Book> currentBorrowedList = user.getBorrowedBooks();
-			for(Book book:currentBorrowedList)
-				if(book.getID()==bookId)
-					bookDAO.addBookToRepo(book);			
+		List<Book> currentBorrowedList = user.getBorrowedBooks();
+		for (Book book : currentBorrowedList)
+			if (book.getID() == bookId)
+				bookDAO.addBookToRepo(book);
 	}
 
 	boolean checkValidBook(long bookId, User user) {
@@ -127,8 +129,8 @@ public class BooksServiceImpl implements BookService {
 
 	private void removeFromBorrowedList(long bookId, User user) {
 		List<Book> currentBorrowedList = user.getBorrowedBooks();
-		int i=0;
-		for (; i<currentBorrowedList.size();i++) {
+		int i = 0;
+		for (; i < currentBorrowedList.size(); i++) {
 			if (currentBorrowedList.get(i).getID() == bookId)
 				break;
 		}
@@ -139,14 +141,14 @@ public class BooksServiceImpl implements BookService {
 	@Override
 	public ReturnStatus returnBothBooks(User user) {
 		List<Book> currentBorrowedList = user.getBorrowedBooks();
-		if(currentBorrowedList.size()==0) {
+		if (currentBorrowedList.size() == 0) {
 			return ReturnStatus.NO_BOOKS_TO_RETURN;
 		}
-		for(Book book:currentBorrowedList) {
+		for (Book book : currentBorrowedList) {
 			addBookToRepo(book.getID(), user);
 		}
-			emptyBorrowList(user);
-			return ReturnStatus.RETURN_SUCCESSFUL;
+		emptyBorrowList(user);
+		return ReturnStatus.RETURN_SUCCESSFUL;
 	}
 
 	private void emptyBorrowList(User user) {

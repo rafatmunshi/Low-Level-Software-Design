@@ -44,7 +44,7 @@ public class BookController {
 		BorrowStatus borrowStatus = bookService.borrowBook(bookId, user);
 		System.out.println(borrowStatus.toString());
 	}
-	
+
 	public void returnABook(long bookId, User user) {
 		ReturnStatus returnStatus = bookService.returnABook(bookId, user);
 		System.out.println(returnStatus.toString());

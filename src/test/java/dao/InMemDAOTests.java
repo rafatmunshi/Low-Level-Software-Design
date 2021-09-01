@@ -45,7 +45,8 @@ public class InMemDAOTests {
 	@Test
 	public void addBookToRepo() {
 		bookDAOInMemImpl.addBookToRepo(new Book(1, null, null));
-		assertEquals(3, bookDAOInMemImpl.getBook(1).getCopiesOfBook(), "it should increment the copies of book with ID 1");
+		assertEquals(3, bookDAOInMemImpl.getBook(1).getCopiesOfBook(),
+				"it should increment the copies of book with ID 1");
 		bookDAOInMemImpl.addBookToRepo(new Book(6, null, null));
 		assertEquals(6, bookDAOInMemImpl.getBook(6).getID(), "it should add the book with ID 6");
 	}

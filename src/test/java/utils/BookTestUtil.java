@@ -18,10 +18,10 @@ public class BookTestUtil {
 	}
 
 	public static List<Book> getBorrowedBooksTillLimitUtil() {
-		int borrowLimit=User.getBorrowLimit();
+		int borrowLimit = User.getBorrowLimit();
 		List<Book> bookList = new LinkedList<Book>();
-		for(int i=1; i<=borrowLimit;i++) {
-			bookList.add(new Book(i, "Name"+i, "Author"+i));
+		for (int i = 1; i <= borrowLimit; i++) {
+			bookList.add(new Book(i, "Name" + i, "Author" + i));
 		}
 		return bookList;
 	}

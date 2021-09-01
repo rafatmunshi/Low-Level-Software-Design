@@ -102,6 +102,7 @@ public class bookControllerTest {
 		testBookBorrowedForReturn();
 		testBookReturnSuccess();
 	}
+
 	private void testBookReturnSuccess() {
 		when(bookListService.returnABook(1, null)).thenReturn(ReturnStatus.RETURN_SUCCESSFUL);
 		bookListController.returnABook(1, null);
@@ -125,7 +126,8 @@ public class bookControllerTest {
 	private void testNoBooksToReturn() {
 		when(bookListService.returnBothBooks(null)).thenReturn(ReturnStatus.NO_BOOKS_TO_RETURN);
 		bookListController.returnBothBooks(null);
-		assertEquals(true, outContent.toString().contains("NO_BOOKS_TO_RETURN"), "it should signify no books to return");
+		assertEquals(true, outContent.toString().contains("NO_BOOKS_TO_RETURN"),
+				"it should signify no books to return");
 	}
 
 	private void testBookBorrowedForReturn() {
@@ -133,7 +135,7 @@ public class bookControllerTest {
 		bookListController.returnABook(1, null);
 		assertEquals(true, outContent.toString().contains("INVALID_BOOK_ID"), "it should valid book is absent");
 	}
-	
+
 	@AfterEach
 	public void revertStreams() {
 		System.setOut(sysOut);
