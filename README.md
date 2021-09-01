@@ -146,4 +146,4 @@ The class diagram for this story is-
 
 - Improvements-
 As the classes like BooksServiceImpl, BooksServiceImplTest and BookControllerTest have gotten bigger, it would be better to refactor them and divide in three main functionality files- List, Borrow and Return. For this **Interface segregation** needs to be done to cater to only list, borrow and return functionalities respectively by the specific interfaces.
-This could have been achieved if, while developing story implementations iteratively, the **open closed principle** was followed, by creating  new functionality service/controllers by inheriting the initial one. The Interface segregation would have been achieved iteratively then.
+If while developing story implementations iteratively, the **open closed principle** was used more, and new functionality service/controllers were created by inheriting the initial one, the Interface segregation and smaller files would have been achieved iteratively then. So this is one improvement to have done.

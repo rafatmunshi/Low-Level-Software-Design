@@ -3,10 +3,10 @@ models\BorrowStatus.class
 services\BookServiceImpl.class
 dao\BookDAO.class
 LibraryApplication.class
+exceptions\BookListNotFoundException.class
 models\User.class
 services\BookService.class
 controllers\BookController.class
 dao\BookDAOInMemImpl.class
-exceptions\bookListNotFoundException.class
 models\ReturnStatus.class
 models\Book.class

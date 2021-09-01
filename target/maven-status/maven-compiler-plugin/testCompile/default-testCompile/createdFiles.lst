@@ -1,5 +1,5 @@
-controllers\bookControllerTest.class
 utils\BookTestUtil.class
+controllers\BookControllerTest.class
 services\BookServiceImplTest.class
 ApplicationTest.class
 dao\InMemDAOTests.class
