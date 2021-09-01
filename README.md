@@ -49,13 +49,13 @@ The bookListService class checks if the list is empty or not, and returns the sp
 The bookListController displays message to the console "The library is empty" if service class returns an empty library. Otherwise it prints line by line on the console the book details.
 Method namings are used based on the concept of the class it belongs, e.g DAO will "get" from datasource, Service will "provide", and controller will "display"
 The Test classes are arranged in the same manner. The dependencies are mocked using mockito.
-All functionalities are tested with 90% coverage.
+
 
 - DataStructure- A LinkedList is used in DAO as for this story, we only need to traverse entire list to display and no other functionality is expected.
 
 - Principles-
-Dependency inversion used so that controller can work with any service implementation based on the type of business rules to be used
-Dependency inversion used so that service can work with any DAO implementation based on the persistence media used
+**Dependency inversion** used so that it is easier to test by mocking and controller can work with any service implementation based on the type of business rules to be used
+Dependency inversion used so that it is easier to test by mocking and service can work with any DAO implementation based on the persistence media used
 A util class is used for tests to avoid repetition (DRY)
 
 The class diagram for this story is-
@@ -83,8 +83,8 @@ An enum borrowStatus model is created to track the various cases while borrowing
 
 - Principles-
 Some names of classes change to generalise them and not introduce unnecessary extra extended classes.
-Some refactoring done to avoid repetition in code (DRY)
-As options for the user are increasing, the Exit option is made final as choice 20, so that the number is not used in code instead the variable name is used to make the code readable.
+Some refactoring done to avoid repetition in code **(DRY)**
+As options for the user are increasing, the Exit option is made final as choice 20, so that the number is not used in code instead the variable name is used to make the code **readable**.
 
 The class diagram for this story is-
 ![Test Image 1](Story2.png)
@@ -107,8 +107,8 @@ a. Only 1 copy of a book can be borrowed by a User at any point of time
 It is assumed that the information of number of copies available of each book is supposed to be only with the library and should not be displayed to the user. The user will get the relevant message of "Not Enough Copies" if all copies are borrowed of the book.
 
 - Principles-
-For this story, we need to add number of copies for each book. Instead of modifying the earlier Book model, we can extend it with a new Model class extending the Book class, to add copies of that book, while giving a new constructor to create books with number of copies. (Open for extension, closed for modification)
-All the remaining code need not be changed as the child object can be assigned to the parent object (Liskov Substitution)
+For this story, we need to add number of copies for each book. Instead of modifying the earlier Book model, we can extend it with a new Model class extending the Book class, to add copies of that book, while giving a new constructor to create books with number of copies. **(Open for extension, closed for modification)**
+All the remaining code need not be changed as the child object can be assigned to the parent object **(Liskov Substitution)**
 With this, the repository of BookDAO changed to have a map of bookcopies now.
 
 - Refactoring-
@@ -131,12 +131,19 @@ Then , my borrowed list is empty
 And , the library reflects the updated stock of the books
 ```
 
-Refactored small parts of code
+- Refactored small parts of code
 
 - Principles-
-Overall, for all the stories Java Class Structure is created in such a way that levels of abstraction are achieved with the layers. This makes it more maintainable. Having interfaces like Service, DAO and their implementations- ServiceImpl, DAOImpl differently helps us to program to an interface instead of implementation so that we may be able to extend instead of modify; or use another implementation for the interfaces without changing anything where those interfaces are used (for dependency inversion). This gives flexibility and maintainability.
+Overall, for all the stories Java Class Structure is created in such a way that levels of **abstraction** are achieved with the layers. This makes it more maintainable. Having interfaces like Service, DAO and their implementations- ServiceImpl, DAOImpl differently helps us to **program to an interface instead of implementation** so that we may be able to extend instead of modify; or use another implementation for the interfaces without changing anything where those interfaces are used (for dependency inversion). This gives flexibility and maintainability.
+All functionalities are tested with 90+% coverage.
 
 The class diagram for this story is-
 ![Test Image 1](Story4.png)
 
-- Further improvements/refactoring ideas-
+
+
+
+
+- Improvements-
+As the classes like BooksServiceImpl, BooksServiceImplTest and BookControllerTest have gotten bigger, it would be better to refactor them and divide in three main functionality files- List, Borrow and Return. For this **Interface segregation** needs to be done to cater to only list, borrow and return functionalities respectively by the specific interfaces.
+This could have been achieved if, while developing story implementations iteratively, the **open closed principle** was followed, by creating  new functionality service/controllers by inheriting the initial one. The Interface segregation would have been achieved iteratively then.
