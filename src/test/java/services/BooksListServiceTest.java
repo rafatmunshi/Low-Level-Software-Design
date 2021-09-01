@@ -77,13 +77,13 @@ public class BooksListServiceTest {
 		List<Book> borrowedBooksList = utils.BookTestUtil.getBorrowedBooksTillLimitUtil();
 		when(bookDao.getAllBooks()).thenReturn(utils.BookTestUtil.getAllBooksUtil());
 		BorrowStatus borrowStatus = booksListServiceImpl.borrowBook(1, new User(1, borrowedBooksList));
-		assertEquals(BorrowStatus.BORROW_LIMIT_EXCEEDED, borrowStatus);
+		assertEquals(BorrowStatus.BORROW_LIMIT_EXCEEDED, borrowStatus, "it should return borrow limit exceeded");
 	}
 
 	private void testNoBooksToBorrow() {
 		when(bookDao.getAllBooks()).thenReturn(new LinkedList<Book>());
 		BorrowStatus borrowStatus = booksListServiceImpl.borrowBook(1, user);
-		assertEquals(BorrowStatus.NO_BOOKS_PRESENT, borrowStatus);
+		assertEquals(BorrowStatus.NO_BOOKS_PRESENT, borrowStatus, "it should return no books present ");
 	}
 
 	public void testBookBorrowSuccess() {
@@ -141,16 +141,16 @@ public class BooksListServiceTest {
 		List<Book> books=new LinkedList<Book>();
 		books.add(book);
 		User user= new User(1, books);
-		assertEquals(true,booksListServiceImpl.checkValidBook(1, user));
-		assertEquals(false,booksListServiceImpl.checkValidBook(2, user));
+		assertEquals(true,booksListServiceImpl.checkValidBook(1, user), "it should validate that book is present");
+		assertEquals(false,booksListServiceImpl.checkValidBook(2, user), "it should validate that book is absent");
 	}
 	private void testBookReturnSuccess() {
 		Book book= new Book(1, null, null);
 		List<Book> books=new LinkedList<Book>();
 		books.add(book);
 		User user= new User(1, books);
-		assertEquals(ReturnStatus.INVALID_BOOK_ID, booksListServiceImpl.returnABook(2, user));
-		assertEquals(ReturnStatus.RETURN_SUCCESSFUL, booksListServiceImpl.returnABook(1, user));
+		assertEquals(ReturnStatus.INVALID_BOOK_ID, booksListServiceImpl.returnABook(2, user), "it should validate that book is absent");
+		assertEquals(ReturnStatus.RETURN_SUCCESSFUL, booksListServiceImpl.returnABook(1, user), "it should return successfully");
 		assertEquals(0, user.getBorrowedBooks().size());
 	}
 
@@ -168,13 +168,13 @@ public class BooksListServiceTest {
 		books.add(book1);
 		books.add(book2);
 		User user= new User(1, books);
-		assertEquals(ReturnStatus.RETURN_SUCCESSFUL,booksListServiceImpl.returnBothBooks(user));
+		assertEquals(ReturnStatus.RETURN_SUCCESSFUL,booksListServiceImpl.returnBothBooks(user),  "it should return successfully");
 		assertEquals(0, user.getBorrowedBooks().size());
 	}
 
 	private void testNoBooksToReturn() {
 		User user= new User(1, new LinkedList<Book>());
-		assertEquals(ReturnStatus.NO_BOOKS_TO_RETURN,booksListServiceImpl.returnBothBooks(user));
+		assertEquals(ReturnStatus.NO_BOOKS_TO_RETURN,booksListServiceImpl.returnBothBooks(user),  "it should signify no books to return");
 	}
 
 }

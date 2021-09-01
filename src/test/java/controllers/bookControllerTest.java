@@ -106,7 +106,7 @@ public class bookControllerTest {
 		when(bookListService.returnABook(1, null)).thenReturn(ReturnStatus.RETURN_SUCCESSFUL);
 		bookListController.returnABook(1, null);
 		// Assert
-		assertEquals(true, outContent.toString().contains("RETURN_SUCCESSFUL"));
+		assertEquals(true, outContent.toString().contains("RETURN_SUCCESSFUL"), "it should return successfully");
 	}
 
 	@DisplayName("On call to return both books")
@@ -119,19 +119,19 @@ public class bookControllerTest {
 	private void testReturnsBooksSuccess() {
 		when(bookListService.returnBothBooks(null)).thenReturn(ReturnStatus.RETURN_SUCCESSFUL);
 		bookListController.returnBothBooks(null);
-		assertEquals(true, outContent.toString().contains("RETURN_SUCCESSFUL"));
+		assertEquals(true, outContent.toString().contains("RETURN_SUCCESSFUL"), "it should return successfully");
 	}
 
 	private void testNoBooksToReturn() {
 		when(bookListService.returnBothBooks(null)).thenReturn(ReturnStatus.NO_BOOKS_TO_RETURN);
 		bookListController.returnBothBooks(null);
-		assertEquals(true, outContent.toString().contains("NO_BOOKS_TO_RETURN"));
+		assertEquals(true, outContent.toString().contains("NO_BOOKS_TO_RETURN"), "it should signify no books to return");
 	}
 
 	private void testBookBorrowedForReturn() {
 		when(bookListService.returnABook(1, null)).thenReturn(ReturnStatus.INVALID_BOOK_ID);
 		bookListController.returnABook(1, null);
-		assertEquals(true, outContent.toString().contains("INVALID_BOOK_ID"));
+		assertEquals(true, outContent.toString().contains("INVALID_BOOK_ID"), , "it should valid book is absent");
 	}
 	
 	@AfterEach

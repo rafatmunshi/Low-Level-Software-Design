@@ -4,6 +4,7 @@ import java.util.List;
 
 import exceptions.bookListNotFoundException;
 import models.Book;
+import models.BookCopies;
 import models.BorrowStatus;
 import models.ReturnStatus;
 import models.User;

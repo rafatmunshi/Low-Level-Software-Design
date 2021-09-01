@@ -21,8 +21,10 @@ public class LibraryApplication {
 			boolean isExitChoice = choice == EXIT ? true : false;
 			if (isExitChoice)
 				break;
-			else
+			else {
 				executeChoice(choice);
+			}
+				
 		}
 	}
 
@@ -49,13 +51,13 @@ public class LibraryApplication {
 		forThisSpecificImpl.returnBothBooks(currentUser);
 	}
 
-	private static void returnABook() {
+	static void returnABook() {
 		System.out.println("Which book do you want to return? Mention its ID");
 		long bookId = takeChoiceFromUser();
 		forThisSpecificImpl.returnABook(bookId, currentUser);
 	}
 
-	private static void borrowBook() {
+	static void borrowBook() {
 		System.out.println("Which book do you want to borrow? Mention its ID");
 		long bookId = takeChoiceFromUser();
 		forThisSpecificImpl.borrowBook(bookId, currentUser);

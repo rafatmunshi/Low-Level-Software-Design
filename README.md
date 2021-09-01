@@ -7,18 +7,15 @@
 
 ## Running Unit Tests With Maven
 
-You can run your unit tests by running the following command at the command prompt:
+To run unit tests/compile/install please run the following command at the command prompt:
 
     mvn clean test   
-
-To run all tests
-
-    mvn clean -Dtest="*" test
-
-To only compile the project
-
     mvn clean compile
+    mvn clean install
 
+To run the project over the command line, in the directory of the project, execute the command-
+    
+    java -jar runnablejar.jar
 
 ## Story 1-
 ```
@@ -106,8 +103,12 @@ And , the book is removed from the library
 Note:
 a. Only 1 copy of a book can be borrowed by a User at any point of time
 ```
+- Assumption-
+It is assumed that the information of number of copies available of each book is supposed to be only with the library and should not be displayed to the user. The user will get the relevant message of "Not Enough Copies" if all copies are borrowed of the book.
+
 - Principles-
 For this story, we need to add number of copies for each book. Instead of modifying the earlier Book model, we can extend it with a new Model class extending the Book class, to add copies of that book, while giving a new constructor to create books with number of copies. (Open for extension, closed for modification)
+All the remaining code need not be changed as the child object can be assigned to the parent object (Liskov Substitution)
 With this, the repository of BookDAO changed to have a map of bookcopies now.
 
 - Refactoring-
@@ -130,8 +131,10 @@ Then , my borrowed list is empty
 And , the library reflects the updated stock of the books
 ```
 
-Refactored code to add conditions.
+Refactored small parts of code
 
 - Principles-
 Overall, for all the stories Java Class Structure is created in such a way that levels of abstraction are achieved with the layers. This makes it more maintainable. Having interfaces like Service, DAO and their implementations- ServiceImpl, DAOImpl differently helps us to program to an interface instead of implementation so that we may be able to extend instead of modify; or use another implementation for the interfaces without changing anything where those interfaces are used (for dependency inversion). This gives flexibility and maintainability.
 
+The class diagram for this story is-
+![Test Image 1](Story4.png)
